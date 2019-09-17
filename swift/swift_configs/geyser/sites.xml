@@ -1,0 +1,36 @@
+<config>
+ <pool handle="localhost">
+ <filesystem provider="local"/>
+ <execution provider="coaster" jobmanager="local:lsf"/>
+ <profile namespace="globus"   key="jobsPerNode">1</profile>
+ <profile namespace="globus"   key="maxTime">28800</profile>
+ <profile namespace="globus"   key="maxwalltime">07:30</profile>
+ <profile namespace="globus"   key="lowOverallocation">100</profile>
+ <profile namespace="globus"   key="highOverallocation">100</profile>
+ <profile namespace="globus"   key="nodeGranularity">1</profile>
+ <profile namespace="globus"   key="maxNodes">1</profile>
+ <profile namespace="globus"   key="project">P93300641</profile>
+ <profile namespace="globus"   key="queue">geyser</profile>
+ <profile namespace="karajan"  key="jobThrottle">0.23</profile>
+ <profile namespace="karajan"  key="initialScore">10000</profile>
+ <workdirectory>/glade/scratch/$USER/swift_scratch/</workdirectory>
+ </pool>
+
+ <pool handle="localhost-hsi">
+ <filesystem provider="local"/>
+ <execution provider="coaster" jobmanager="local:lsf"/>
+ <profile namespace="globus"   key="jobsPerNode">1</profile>
+ <profile namespace="globus"   key="maxTime">3600</profile>
+ <profile namespace="globus"   key="maxwalltime">02:00</profile>
+ <profile namespace="globus"   key="lowOverallocation">100</profile>
+ <profile namespace="globus"   key="highOverallocation">100</profile>
+ <profile namespace="globus"   key="nodeGranularity">1</profile>
+ <profile namespace="globus"   key="maxNodes">1</profile>
+ <profile namespace="globus"   key="project">P93300641</profile>
+ <profile namespace="globus"   key="queue">geyser</profile>
+ <profile namespace="karajan"  key="jobThrottle">.04</profile>
+ <profile namespace="karajan"  key="initialScore">10000</profile>
+ <workdirectory>/glade/scratch/$USER/swift_scratch/</workdirectory>
+ </pool>
+
+</config>                                            

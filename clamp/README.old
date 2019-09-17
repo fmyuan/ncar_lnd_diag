@@ -1,0 +1,38 @@
+======================================
+To process CLAMP metric diagnostics:
+======================================
+
+1. get script:
+
+   run_1-model.csh : if comparing 1 model  with observations
+   run_2-model.csh : if comparing 2 models with observations
+
+   from /fis/cgd/cseg/people/jeff/clamp/all
+
+   slevis: Copied /fis/cgd/cseg/people/jeff/clamp and /fis/cgd/cseg/people/jeff/clamp_data
+           to /fis/cgd/tss/slevis
+           Renamed run_*-model.csh to run_*slevis.csh
+ 
+2. edit script: change ONLY the "user modeification" section(s)
+
+3. run  script:
+
+   run_1-model.csh > out.1
+   run_2-model.csh > out.1
+
+   => final ouptput in 1 directory   (if comparing 1 model)
+      or
+      final ouptput in 3 directories (if comparing 2 models)
+
+      if copying output to a web directory:                   
+        - copy the *.tar file to a web directory
+        - untar *.tar at the web directory
+
+      output will appear in the directory where you execute the script
+
+Notes:
+ - tested on tempest, robin (ornl), hawk (ornl)
+ - for resolutions other than t31, t42, 1.9, go in /clamp_data/surface_model
+   and create new class* and lnd* files from clm's surface data
+ - see note.message for normal messages in out.1
+ - see note.data for info on data

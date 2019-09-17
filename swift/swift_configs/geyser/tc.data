@@ -1,0 +1,56 @@
+#This is the transformation catalog.
+#
+#It comes pre-configured with a number of simple transformations with
+#paths that are likely to work on a linux box. However, on some systems,
+#the paths to these executables will be different (for example, sometimes
+#some of these programs are found in /usr/bin rather than in /bin)
+#
+#NOTE WELL: fields in this file must be separated by tabs, not spaces; and
+#there must be no trailing whitespace at the end of each line.
+#
+# sitename  transformation  path   INSTALLED  platform  profiles
+localhost	echo	/bin/echo	INSTALLED	INTEL32::LINUX	null
+localhost	cat	/bin/cat	INSTALLED	INTEL32::LINUX	null
+localhost	ls	/bin/ls		INSTALLED	INTEL32::LINUX	null
+localhost	grep	/bin/grep	INSTALLED	INTEL32::LINUX	null
+localhost	sort	/bin/sort	INSTALLED	INTEL32::LINUX	null
+localhost	paste	/bin/paste	INSTALLED	INTEL32::LINUX	null
+localhost	pwd	/bin/pwd	INSTALLED	INTEL32::LINUX	null
+localhost	bash	/bin/bash	INSTALLED	INTEL32::LINUX	null
+localhost	pwd	/bin/pwd	INSTALLED	INTEL32::LINUX	null
+localhost	touch	/bin/touch	INSTALLED	INTEL32::LINUX	null
+localhost	cp	/bin/cp	INSTALLED	INTEL32::LINUX	null
+localhost	mv	/bin/mv	INSTALLED	INTEL32::LINUX	null
+localhost	printf	/usr/bin/printf	INSTALLED	INTEL32::LINUX	null
+localhost	ncks	/fs/local/bin/ncks	INSTALLED	INTEL32::LINUX	null
+localhost	ncea	/fs/local/bin/ncea	INSTALLED	INTEL32::LINUX	null
+localhost	ncatted	/fs/local/bin//ncatted	INSTALLED	INTEL32::LINUX	null
+localhost	ncflint	/fs/local/bin/ncflint	INSTALLED	INTEL32::LINUX	null
+localhost	ncrcat	/fs/local/bin/ncrcat	INSTALLED	INTEL32::LINUX	null
+localhost	ncra	/fs/local/bin/ncra	INSTALLED	INTEL32::LINUX	null
+localhost-hsi	mfiles_csh	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/mfiles.csh	INSTALLED	INTEL32::LINUX	null
+localhost	createAnnual_pl	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/createAnnual.pl	INSTALLED	INTEL32::LINUX	null
+localhost	createAnnualAll_pl	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/createAnnualAll.pl	INSTALLED	INTEL32::LINUX	null
+localhost	complete_csh	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/complete.csh	INSTALLED	INTEL32::LINUX	null
+localhost	create_ANN_climo_pl	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/create_ANN_climo.pl	INSTALLED	INTEL32::LINUX	null
+localhost	create_ANN_means_pl	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/create_ANN_means.pl	INSTALLED	INTEL32::LINUX	null
+localhost	create_MONS_climo_step2_1_pl	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/create_MONS_climo_step2_1.pl	INSTALLED	INTEL32::LINUX	null
+localhost	create_MONS_climo_step2_2_pl	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/create_MONS_climo_step2_2.pl	INSTALLED	INTEL32::LINUX  null
+localhost	create_MONS_climo_step2_3_pl	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/create_MONS_climo_step2_3.pl	INSTALLED	INTEL32::LINUX  null
+localhost	create_SEAS_climo_step1_1_pl	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/create_SEAS_climo_step1_1.pl	INSTALLED	INTEL32::LINUX	null
+localhost	create_SEAS_climo_step1_2_pl	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/create_SEAS_climo_step1_2.pl	INSTALLED	INTEL32::LINUX	null
+localhost	create_SEAS_climo_step2_pl	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/create_SEAS_climo_step2.pl	INSTALLED	INTEL32::LINUX	null
+localhost	create_SEAS_means_step1_pl	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/create_SEAS_means_step1.pl	INSTALLED	INTEL32::LINUX	null
+localhost	create_SEAS_means_step2_pl	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/create_SEAS_means_step2.pl	INSTALLED	INTEL32::LINUX	null
+localhost	getDecFlag_csh	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/getDecFlag.csh	INSTALLED	INTEL32::LINUX	null
+localhost	run_ncl_model_obs_csh	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/run_ncl_model_obs.csh	INSTALLED	INTEL32::LINUX null
+localhost	run_ncl_model_model_csh	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/run_ncl_model_model.csh	INSTALLED	INTEL32::LINUX	null
+localhost       run_clamp_ncl_csh       /glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/run_clamp_ncl.csh      INSTALLED       INTEL32::LINUX  null
+localhost	mergerCompareTable_csh	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/mergerCompareTable.csh	INSTALLED	INTEL32::LINUX	null
+localhost       run_pre_clamp_ncl_csh   /glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/run_pre-clamp_ncl.csh  INSTALLED       INTEL32::LINUX  null
+localhost	get_fileList_csh	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/get_fileList.csh	INSTALLED	INTEL32::LINUX	null
+localhost	lnd_ps2gif_swift_pl	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/lnd_ps2gif_swift.pl	INSTALLED	INTEL32::LINUX	null
+localhost       regrid_history_ncl_wrapper_csh  /glade/p/cesm/lmwg/diag/lnd_diag4.2/code/shared/regrid_history_ncl_wrapper.csh       INSTALLED       INTEL32::LINUX  null
+localhost	regrid_csh	/glade/p/cesm/lmwg/diag/lnd_diag4.2/swift/swift_utils/run_regridding.csh	INSTALLED	INTEL32::LINUX	null
+localhost	sleep	/bin/sleep	null	null	null
+pbs	cat	/bin/cat	null	null	GLOBUS::maxwalltime="10:00:00"

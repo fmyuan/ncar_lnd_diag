@@ -1,0 +1,4 @@
+# Describe the CDM for my job 
+#rule .*.nc DIRECT /glade/scratch/mickelso/omwg-swift/swiftSandbox 
+rule .*.nc DEFAULT
+rule .* DEFAULT
