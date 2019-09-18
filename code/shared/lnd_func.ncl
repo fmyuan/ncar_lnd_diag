@@ -258,7 +258,9 @@ begin
     pe1d = ndtooned(pe)
     indx = ind(pe1d .gt. p1d .and. pe1d .ne. 0.0)
     ; indx = ind(pe1d .gt. p1d)
-    xim1d(indx) = (p1d(indx) / pe1d(indx)) - 1.0
+    if (.not. (any(ismissing(indx)))) then ; missing_valued index can cause out of index fatal error
+      xim1d(indx) = (p1d(indx) / pe1d(indx)) - 1.0
+    end if
     delete(indx)
     indx = ind(pe1d .le. p1d .and. p1d .ne. 0.0)
     xim1d(indx) = 1.0 - (pe1d(indx) / p1d(indx))

@@ -1,0 +1,83 @@
+netcdf region_definitions_N60 {
+dimensions:
+	region = 11 ;
+	ncl3 = 20 ;
+	ncl1 = 18 ;
+	ncl2 = 20 ;
+variables:
+	char BOXSTR(region, ncl3) ;
+		BOXSTR:long_name = "Region Lat/Lon Title" ;
+	float BOX_E(region) ;
+		BOX_E:long_name = "Eastern Boundary" ;
+	float BOX_N(region) ;
+		BOX_N:long_name = "Northern Boundary" ;
+	float BOX_S(region) ;
+		BOX_S:long_name = "Southern Boundary" ;
+	float BOX_W(region) ;
+		BOX_W:long_name = "Western Boundary" ;
+	char PS_ID(region, ncl1) ;
+		PS_ID:long_name = "Postscript File Id" ;
+	char PTITSTR(region, ncl2) ;
+		PTITSTR:long_name = "Region Title" ;
+	int region(region) ;
+
+// global attributes:
+		:project = "adding Asian Sub-Regions (for Liya Jin)" ;
+		:srcCode = "mkNewRegions.ncl" ;
+		:creator = "Nan Rosenbloom (nanr@ucar.edu)" ;
+		:create_date = "Fri Jun  5 17:47:01 MDT 2009" ;
+		:history = " Wed Spe 18 11:54:33 2019: remove Antartica, BOX_S limited to 60oN, by F.-M. Yuan@ornl-ccsi \n",
+			"Wed Sep 18 11:50:34 2019: ncks --dmn region,0,11 region_definitions_default.nc -o region_definitions_N60.nc\n",
+			"Wed Aug 12 20:08:48 2009: ncatted -a _FillValue,,d,, region_definitions.nc" ;
+		:NCO = "netCDF Operators version 4.8.0 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)" ;
+data:
+
+ BOXSTR =
+  "(66.5-72N,170-140W)",
+  "(66.5-90N,120-60W)",
+  "(60-90N,60-20W)",
+  "(66.5-90N,70-170E)",
+  "(60-66.5N,170-140W)",
+  "(60-66.5N,125-100W)",
+  "(60-66.5N,100-80W)",
+  "(60-66.5N,80-55W)",
+  "(60-70N,5-45E)",
+  "(60-66.5N,60-90E)",
+  "(60-66.5N,90-140E)";
+
+ BOX_E = -140, -60, -20, 170, -140, -100, -80, -55, 45, 90, 140 ;
+
+ BOX_N = 72, 90, 90, 90, 66.5, 66.5, 66.5, 66.5, 70, 66.5, 66.5 ;
+
+ BOX_S = 66.5, 66.5, 60, 66.5, 60, 60, 60, 60, 60, 60, 60 ;
+
+ BOX_W = -170, -120, -60, 70, -170, -125, -100, -80, 5, 60, 90 ;
+
+ PS_ID =
+  "Alaskan_Arctic",
+  "Canadian_Arctic",
+  "Greenland",
+  "Russian_Arctic",
+  "Alaska",
+  "Northwest_Canada",
+  "Central_Canada",
+  "Eastern_Canada",
+  "Northern_Europe",
+  "Western_Siberia",
+  "Eastern_Siberia";
+
+ PTITSTR =
+  "Alaskan Arctic ",
+  "Canadian Arctic ",
+  "Greenland ",
+  "Russian Arctic ",
+  "Alaska ",
+  "Northwest Canada ",
+  "Central Canada ",
+  "Eastern Canada ",
+  "Northern Europe ",
+  "Western Siberia ",
+  "Eastern Siberia ";
+
+ region = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ;
+}

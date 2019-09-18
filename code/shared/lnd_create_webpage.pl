@@ -540,9 +540,9 @@ sub set3and6Page
 	%polar = ( 'Alaskan_Arctic',   'Alaskan Arctic', 	# polar
 		    'Canadian_Arctic',  'Canadian Arctic',
 		    'Greenland',        'Greenland',
-		    'Russian_Arctic',   'Russian Arctic',
-		    'Polar',            'Polar',
-		    'Antarctica',       'Antarctica', );
+		    'Russian_Arctic',   'Russian Arctic',);
+#		    'Polar',            'Polar',
+#		    'Antarctica',       'Antarctica', );
 
 	%boreal = ( 'Alaska',		'Alaska',		# boreal
 		    'Northwest_Canada', 'Northwest Canada', 
@@ -576,7 +576,7 @@ sub set3and6Page
 		    'Mongolia', 	'Mongolia',
 		    'Tigris_Euphrates',	'Tigris_Euphrates');
 
-        %highlands = ('Tibetan_Plateau',  'Tibetan Plateau', );		# highland
+       %highlands = ('Tibetan_Plateau',  'Tibetan Plateau', );		# highland
 
         %asia = ('Asia',    'Central Asia',			# Liya Jin
 		 'Mongolia_China',    'Central and Eastern Mongolia and NE China',
@@ -618,9 +618,10 @@ sub set3and6Page
 		@set6fluxes  = ("landf","radf","turbf","tsoi","soilliq","soilice","soilliqIce","snowliqIce"); 
 	   }
          }
-	@regions = ("HEMISPHERIC AND GLOBAL","POLAR","BOREAL","MIDDLE LATITUDES","TROPICAL RAINFOREST","TROPICAL SAVANNA",
-			   "ARID","HIGHLAND","ASIA");
-	@paleo_regions = ("HEMISPHERIC AND GLOBAL");
+#	@regions = ("HEMISPHERIC AND GLOBAL","POLAR","BOREAL","MIDDLE LATITUDES","TROPICAL RAINFOREST","TROPICAL SAVANNA",
+#			   "ARID","HIGHLAND","ASIA");
+	@regions = ("POLAR", "BOREAL");
+#	@paleo_regions = ("HEMISPHERIC AND GLOBAL");
 
 	# print set-specific header information
 	printf fp_wp "<TR>\n"; 

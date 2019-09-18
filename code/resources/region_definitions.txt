@@ -1,0 +1,189 @@
+netcdf region_definitions {
+dimensions:
+	region = 44 ;
+	ncl1 = 18 ;
+	ncl2 = 20 ;
+	ncl3 = 20 ;
+variables:
+	int region(region) ;
+	float BOX_S(region) ;
+		BOX_S:long_name = "Southern Boundary" ;
+	float BOX_N(region) ;
+		BOX_N:long_name = "Northern Boundary" ;
+	float BOX_W(region) ;
+		BOX_W:long_name = "Western Boundary" ;
+	float BOX_E(region) ;
+		BOX_E:long_name = "Eastern Boundary" ;
+	char PS_ID(region, ncl1) ;
+		PS_ID:long_name = "Postscript File Id" ;
+	char PTITSTR(region, ncl2) ;
+		PTITSTR:long_name = "Region Title" ;
+	char BOXSTR(region, ncl3) ;
+		BOXSTR:long_name = "Region Lat/Lon Title" ;
+
+// global attributes:
+		:project = "adding Asian Sub-Regions (for Liya Jin)" ;
+		:srcCode = "mkNewRegions.ncl" ;
+		:creator = "Nan Rosenbloom (nanr@ucar.edu)" ;
+		:create_date = "Fri Jun  5 17:47:01 MDT 2009" ;
+		:history = "Wed Aug 12 20:08:48 2009: ncatted -a _FillValue,,d,, region_definitions.nc" ;
+data:
+
+ region = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 
+    19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 
+    37, 38, 39, 40, 41, 42, 43 ;
+
+ BOX_S = 66.5, 66.5, 60, 66.5, -90, 59, 55, 50, 50, 60, 55, 50, 30, 30, 30, 
+    45, 34, 5, -10, -5, -10, -23.5, 6, -23.5, 10, 10, 16, 16, -30, 35, 40, 
+    30, 40, 40, 30, 30, 20, 15, 30, 30, 60, 0, -100, -100 ;
+
+ BOX_N = 72, 90, 90, 90, -65, 66.5, 66.5, 62, 60, 70, 66.5, 66.5, 50, 50, 50, 
+    60, 45, 16, 0, 5, 10, -10, 16, -5, 23.5, 23.5, 30, 30, -20, 50, 50, 40, 
+    55, 50, 40, 40, 30, 30, 45, 40, 90, 100, 0, 100 ;
+
+ BOX_W = -170, -120, -60, 70, -180, -170, -125, -100, -80, 5, 60, 90, -130, 
+    -105, -90, -10, -10, -95, -70, 10, 90, -65, -5, 10, 70, 90, -20, 35, 110, 
+    55, 85, 80, 100, 130, 120, 100, 120, 60, 60, 50, 180, -200, -200, -200 ;
+
+ BOX_E = -140, -60, -20, 170, 180, -140, -100, -80, -55, 45, 90, 140, -105, 
+    -90, -70, 30, 30, -75, -50, 30, 150, -30, 15, 40, 90, 120, 30, 60, 145, 
+    70, 120, 100, 40, 100, 100, 80, 60, -15, -10, 37, -180, 200, 200, 200 ;
+
+ PS_ID =
+  "Alaskan_Arctic",
+  "Canadian_Arctic",
+  "Greenland",
+  "Russian_Arctic",
+  "Antarctica",
+  "Alaska",
+  "Northwest_Canada",
+  "Central_Canada",
+  "Eastern_Canada",
+  "Northern_Europe",
+  "Western_Siberia",
+  "Eastern_Siberia",
+  "Western_US",
+  "Central_US",
+  "Eastern_US",
+  "Europe",
+  "Mediterranean",
+  "Central_America",
+  "Amazonia",
+  "Central_Africa",
+  "Indonesia",
+  "Brazil",
+  "Sahel",
+  "Southern_Africa",
+  "India",
+  "Indochina",
+  "Sahara_Desert",
+  "Arabian_Peninsula",
+  "Australia",
+  "Central_Asia",
+  "Mongolia",
+  "Tibetan_Plateau",
+  "Asia",
+  "Mongolia_China",
+  "Eastern_China",
+  "Tibet",
+  "Southern_Asia",
+  "NAfrica_Arabia",
+  "Med_MidEast",
+  "Tigris_Euphrates",
+  "Polar",
+  "N_H_Land",
+  "S_H_Land",
+  "Global" ;
+
+ PTITSTR =
+  "Alaskan Arctic ",
+  "Canadian Arctic ",
+  "Greenland ",
+  "Russian Arctic ",
+  "Antarctica ",
+  "Alaska ",
+  "Northwest Canada ",
+  "Central Canada ",
+  "Eastern Canada ",
+  "Northern Europe ",
+  "Western Siberia ",
+  "Eastern Siberia ",
+  "Western U.S. ",
+  "Central U.S. ",
+  "Eastern U.S. ",
+  "Europe ",
+  "Mediterranean ",
+  "Central America ",
+  "Amazonia ",
+  "Central Africa ",
+  "Indonesia ",
+  "Brazil ",
+  "Sahel ",
+  "Southern Africa ",
+  "India ",
+  "Indochina ",
+  "Sahara Desert ",
+  "Arabian Peninsula ",
+  "Australia ",
+  "Central Asia ",
+  "Mongolia ",
+  "Tibetan Plateau ",
+  "Central Asia",
+  "NE China",
+  "Eastern China",
+  "Tibetan Plateau",
+  "Southern Asia",
+  "Sahara and Arabia",
+  "MedSea and MidEast",
+  "Tigris Euphrates",
+  "Polar",
+  "N. Hemisphere Land ",
+  "S. Hemisphere Land ",
+  "Global " ;
+
+ BOXSTR =
+  "(66.5-72N,170-140W)",
+  "(66.5-90N,120-60W)",
+  "(60-90N,60-20W)",
+  "(66.5-90N,70-170E)",
+  "(90-65S,180W-180E)",
+  "(59-66.5N,170-140W)",
+  "(55-66.5N,125-100W)",
+  "(50-62N,100-80W)",
+  "(50-60N,80-55W)",
+  "(60-70N,5-45E)",
+  "(55-66.5N,60-90E)",
+  "(50-66.5N,90-140E)",
+  "(30-50N,130-105W)",
+  "(30-50N,105-90W)",
+  "(30-50N,90-70W)",
+  "(45-60N,10W-30E)",
+  "(34-45N,10W-30E)",
+  "(5-16N,95-75W)",
+  "(10S-0,70-50W)",
+  "(5S-5N,10-30E)",
+  "(10S-10N,90-150E)",
+  "(23.5-10S,65-30W)",
+  "(6-16N,5W-15E)",
+  "(23.5-5S,10-40E)",
+  "(10-23.5N,70-90E)",
+  "(10-23.5N,90-120E)",
+  "(16-30N,20W-30E)",
+  "(16-30N,35-60E)",
+  "(30-20S,110-145E)",
+  "(35-50N,55-70E)",
+  "(40-50N,85-120E)",
+  "(30-40N,80-100E)",
+  "(40-50N,40-100E)",
+  "(40-50N,100-130E)",
+  "(30-40N,100-120E)",
+  "(30-40N,80-100E)",
+  "(20-30N,60-120E)",
+  "(15-30N,15W-60E)",
+  "(30-45N,10W-60E)",
+  "(30-40N,50W-37E)",
+  "(60-90N,-180W-180E)",
+  "(EQ-90N,180W-180E)",
+  "(90S-EQ,180W-180E)",
+  "(90S-90N,180W-180E)" ;
+}

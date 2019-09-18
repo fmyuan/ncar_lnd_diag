@@ -282,8 +282,6 @@ if($web_pages == 1) then
    endif
 endif
 
-echo 'checking L288'
-
 if ($setRestart_flag == 1) then
  echo 'restarting at set ' $setRestart_set
  if ($setRestart_set == 2) then
