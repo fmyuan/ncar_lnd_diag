@@ -240,7 +240,7 @@ setenv set_6      1   # (1=ON,0=OFF)  ANNUAL TRENDS FOR REGIONS				(default=1)
 setenv set_7      0   # (1=ON,0=OFF)  RIVER FLOW AND DISCHARGE			 	(default=1)
 setenv set_8      0   # (1=ON,0=OFF)  OCN-ATMOS TRACERS					(default=0)
 setenv set_8_lnd  1   # (1=ON,0=OFF)  LND-ATMOS TRACERS					(default=0)
-setenv set_9      1   # (1=ON,0=OFF)  VALIDATION DIAGNOSTICS (ONLY FOR MODEL-MODEL)	(default=1)
+setenv set_9      0   # (1=ON,0=OFF)  VALIDATION DIAGNOSTICS (ONLY FOR MODEL-MODEL)	(default=1)
 
 #**************************************************
 # 15:  Restart Set Analysis and skip previous sets.

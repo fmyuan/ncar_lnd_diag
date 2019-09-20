@@ -26,11 +26,15 @@ globalMeanNat   TSAI
 globalMeanNat   LAISUN
 globalMeanNat   LAISHA
 globalMeanDay   ET
+globalMeanDay   QSOIL
+globalMeanDay   QVEGE
+globalMeanDay   QVEGT
 globalMeanDay   QOVER
 globalMeanDay   QDRAI
 globalMeanDay   QRGWL
 globalMeanNat   WA
-globalMeanNat   WT
+globalMeanNat   TWS
+globalMeanNat   ZWT_PERCH
 globalMeanNat   ZWT
 globalMeanDay   QCHARGE
 globalMeanNat   FCOV

@@ -89,8 +89,9 @@ globalMeanNat0  EVAPFRAC
 globalMeanNat0  XIM
 globalMeanDay0  P-E
 globalMeanNat0  WA
-globalMeanNat0  WT
+globalMeanNat0  TWS
 globalMeanNat0  ZWT
+globalMeanNat0  ZWT_PERCH
 globalMeanDay0  QCHARGE
 globalMeanNat0  FCOV
 globalMeanNat0  PCO2

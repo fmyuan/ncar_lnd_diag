@@ -1015,7 +1015,8 @@ sub set8Page()
 {
         # set-specific header
         @time  = ("DJF","MAM","JJA","SON","ANN");
-        @subsetList  = ("zonal","trends","contour","contourDJF-JJA","ann_cycle");
+        #@subsetList  = ("zonal","trends","contour","contourDJF-JJA","ann_cycle");
+        @subsetList  = ("zonal","ann_cycle");
 
         foreach $subset (@subsetList)
         {

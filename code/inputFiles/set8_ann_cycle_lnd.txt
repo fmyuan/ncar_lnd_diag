@@ -1,1 +1,3 @@
 globalMeanAnn   NEE
+globalMeanNat   PCO2
+globalMeanAnn   F_CO2_SOIL

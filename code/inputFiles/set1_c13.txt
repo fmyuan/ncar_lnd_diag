@@ -30,7 +30,5 @@ globalTotlNat   C13_CWDC
 globalTotlNat   C13_TOTLITC
 globalTotlNat   C13_TOTSOMC
 globalTotlNat   C13_TOTECOSYSC
-globalTotlNat   C13_COL_CTRUNC
-globalTotlNat   C13_PFT_CTRUNC
 globalTotlAnn   C13_COL_FIRE_CLOSS
 globalTotlAnn   C13_PFT_FIRE_CLOSS

@@ -1,8 +1,2 @@
-globalMeanNat   CO2
-globalMeanNat   CO2_LND
-globalMeanNat   CO2_OCN
-globalMeanNat   CO2_FFF
-globalMeanDay   SFCO2
-globalMeanDay   SFCO2_FFF
-globalMeanDay   SFCO2_OCN
-globalMeanDay   SFCO2_LND
+globalMeanNat   PCO2
+globalMeanNat   F_CO2_SOIL

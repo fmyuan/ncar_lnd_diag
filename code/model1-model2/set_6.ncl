@@ -182,15 +182,15 @@ nplots = 12
      if (cn .eq. 1) then
 	fileName   = "set6_fireFlx.txt"
 	plot_name  = "frFlx"
-        titstr = new(8,"string")
-        titstr(0) = "Column-Level Fire C Loss"
-        titstr(1) = "Column-Level Fire N Loss"
-        titstr(2) = "PFT-Level Fire C Loss"
-        titstr(3) = "PFT-Level Fire N Loss"
-        titstr(4) = "Fire Season Length"
-        titstr(5) = "Fire Probability"
-        titstr(6) = "Annual Fraction Area Burned"
-        titstr(7) = "Mean Fire Probability"
+        titstr = new(2,"string")
+        ;titstr(0) = "Column-Level Fire C Loss"
+        ;titstr(1) = "Column-Level Fire N Loss"
+        titstr(0) = "PFT-Level Fire C Loss"
+        titstr(1) = "PFT-Level Fire N Loss"
+        ;titstr(4) = "Fire Season Length"
+        ;titstr(5) = "Fire Probability"
+        ;titstr(6) = "Annual Fraction Area Burned"
+        ;titstr(7) = "Mean Fire Probability"
      else
 	continue
      end if
@@ -264,12 +264,13 @@ nplots = 12
      if (hydroFlag .eq. 1) then
         fileName   = "set6_hydro.txt"  
         plot_name  = "hydro"
-        titstr = new(5,"string")
+        titstr = new(6,"string")
         titstr(0) = "Water in Unconfined Aquifer"       ; WA 
-        titstr(1) = "Total Water Storage"               ; WT
+        titstr(1) = "Total Water Storage"               ; TWS
         titstr(2) = "Water Table Depth"                 ; ZWT
-        titstr(3) = "Aquifer Recharge Rate"             ; QCHARGE
-        titstr(4) = "Frac Water Table at Surface"       ; FCOV                  
+        titstr(3) = "Perch Water Table Depth"           ; ZWT_PERCH
+        titstr(4) = "Aquifer Recharge Rate"             ; QCHARGE
+        titstr(5) = "Frac Water Table at Surface"       ; FCOV                  
      else
         continue
      end if

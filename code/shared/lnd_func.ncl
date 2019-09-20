@@ -68,20 +68,9 @@ begin
     		land1 = mask(landfrac,(x(i,:,:) .eq. x@_FillValue), False)
         	avg_x(i)  = sum( x(i,:,:)*area1*land1/sum(area1*land1) )
                 indx = ind(ismissing(ndtooned(x(i,:,:))) .and. .not.(ismissing(ndtooned(area1))))
-;               print(indx)
                 delete(indx)
                 indx = ind(ismissing(ndtooned(x(i,:,:))) .and. .not.(ismissing(ndtooned(land1))))
-;               print(indx)
                 delete(indx)
-;               print(min(x(i,:,:)))
-;               printVarSummary(area1)
-;               printVarSummary(land1)
-;               print(sum(area1*land1/sum(area1*land1)))
-;               print(x(i,62,:))
-;               print(x(i,:,:))
-;               print(area1(62,:))
-;               print(land1(62,:))
-;               print(avg_x(i))
 		delete(area1)
 		delete(land1)
              end do
@@ -230,6 +219,16 @@ begin
 
     var = fgr                 ; trick to retain meta data
     var = fgr - fsm
+    return(var)
+  end if
+
+  if(var_name.eq."ET")then
+    es = ptr ->QSOIL          ; ground net evaporation (bare soil/snow E+sublimation-Dew)
+    ev = ptr ->QVEGE          ; veg E
+    tv = ptr ->QVEGT          ; veg T
+
+    var = es                 ; trick to retain meta data
+    var = es + ev + tv
     return(var)
   end if
 
@@ -403,13 +402,12 @@ begin
   end if
 
 
-  if(var_name.eq."ET")then
-    qvege = ptr ->QVEGE
-    qvegt = ptr ->QVEGT
-    qsoil = ptr ->QSOIL
-    
-    var =  qvege                ; trick to retain meta data
-    var =  qvege+qvegt+qsoil
+  if(var_name.eq."SMINN_TO_WATER")then
+    no3_runoff   = ptr ->SMIN_NO3_RUNOFF          ; NO3-N runoff
+    no3_leaching = ptr ->SMIN_NO3_LEACHED         ; NO3-N leaching
+
+    var = no3_leaching                 ; trick to retain meta data
+    var = no3_leaching + no3_runoff
     return(var)
   end if
 

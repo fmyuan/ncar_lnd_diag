@@ -31,8 +31,6 @@ globalTotlNat   TOTLITC
 globalTotlNat   TOTSOMC
 globalTotlNat   TOTECOSYSC
 globalTotlNat   TOTCOLC
-globalTotlNat   COL_CTRUNC
-globalTotlNat   PFT_CTRUNC
 globalMeanNat   FPG
 globalMeanNat   FPG_P
 globalMeanNat   FPI
@@ -44,8 +42,6 @@ globalTotlAnn   SUPPLEMENT_TO_SMINN
 globalTotlAnn   SMIN_NO3_LEACHED 
 globalTotlNat   SMINN
 globalTotlAnn   SMINN_TO_NPOOL
-globalTotlNat   COL_NTRUNC
-globalTotlNat   PFT_NTRUNC
 globalTotlNat   RETRANSN
 globalTotlAnn   RETRANSN_TO_NPOOL
 globalTotlAnn   POTENTIAL_IMMOB

@@ -135,7 +135,7 @@ do p=0,nplots-1
                 titstr(4) = "Heterotrophic Respiration"
                 titstr(5) = "Ecosystem Respiration"
                 titstr(6) = "Supplement to Mineral Nitrogen"
-                titstr(7) = "Leached Mineral Nitrogen"
+                titstr(7) = "Mineral Nitrogen Loss to Water Body"
              else
             if (casa .eq. 1) then
                 fileName   = "set3_casaFlx.txt"
@@ -181,12 +181,13 @@ do p=0,nplots-1
      if (hydroFlag .eq. 1) then
         fileName   = "set3_hydro.txt"
         plot_name  = "hydro"
-        titstr = new(5,"string")
+        titstr = new(6,"string")
         titstr(0) = "Water in Unconfined Aquifer"       ; WA
-        titstr(1) = "Total Water Storage"               ; WT
+        titstr(1) = "Total Water Storage"               ; TWS
         titstr(2) = "Water Table Depth"                 ; ZWT
-        titstr(3) = "Aquifer Recharge Rate"             ; QCHARGE
-        titstr(4) = "Frac Water Table at Surface"       ; FCOV
+        titstr(3) = "Perched Water Table Depth"         ; ZWT_PERCH
+        titstr(4) = "Aquifer Recharge Rate"             ; QCHARGE
+        titstr(5) = "Frac Water Table at Surface"       ; FCOV
      else
         continue
      end if 
@@ -965,7 +966,7 @@ if(plot_check.eq.True)then
         do i = 0,nvars-1
           if (vcheck1(i) .eq. True) then
 
-; snowdp plot draws 2 obs + 1 variable on snowdp plot.  Other plots have only 1 variable per plot.
+            ; snowdp plot draws 2 obs + 1 variable on snowdp plot.  Other plots have only 1 variable per plot.
             if (vars(i) .eq. "SNOWDP") then
 
                    if (paleo .eq. 1) then                        ; paleo runs, no obs
@@ -1047,7 +1048,7 @@ if(plot_check.eq.True)then
                     end if
                     delete(x1)
 
-           ; process observations, if available
+                    ; process observations, if available
                     if (obsFlag .eq. 1) then                        ; process variables with observed data
                                 data = new((/2,nmons/),"double")
                            compare = "obs"
@@ -1390,7 +1391,7 @@ end if        ;  end of plot_check loop
       flag1 ({box_s(ar):box_n(ar)},{box_w(ar):box_e(ar)}) = 0.1*fland1 ({box_s(ar):box_n(ar)},{box_w(ar):box_e(ar)}) - 1.e-36
     end do
  else
-    do ar = 0, nreg-4  ; don't include northern and southern hemisphere and global
+    do ar = 0, nreg-1
       flag1 ({box_s(ar):box_n(ar)},{box_w(ar):box_e(ar)}) = 0.1*fland1 ({box_s(ar):box_n(ar)},{box_w(ar):box_e(ar)}) - 1.e-36
     end do
  end if

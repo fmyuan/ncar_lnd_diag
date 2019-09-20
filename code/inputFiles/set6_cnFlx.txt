@@ -5,4 +5,4 @@ globalMeanDay   AR
 globalMeanDay   HR
 globalMeanDay   ER
 globalMeanDay   SUPPLEMENT_TO_SMINN
-globalMeanDay   SMINN_LEACHED
+globalMeanDay   SMINN_TO_WATER

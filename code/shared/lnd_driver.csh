@@ -246,12 +246,12 @@ if ($CASA == 1) then
 endif	
 
 cat $INPUT_FILES/set8_zonal.txt 				> ${WKDIR}master_set8_zonal.txt
-cat $INPUT_FILES/set8_zonal_lnd.txt 			        > ${WKDIR}master_set8_zonal_lnd.txt
+cat $INPUT_FILES/set8_zonal_lnd.txt 			> ${WKDIR}master_set8_zonal_lnd.txt
 cat $INPUT_FILES/set8_trends.txt 				> ${WKDIR}master_set8_trends.txt
 cat $INPUT_FILES/set8_contour.txt 				> ${WKDIR}master_set8_contour.txt
-cat $INPUT_FILES/set8_ann_cycle.txt 				> ${WKDIR}master_set8_ann_cycle.txt
-cat $INPUT_FILES/set8_ann_cycle_lnd.txt 			> ${WKDIR}master_set8_ann_cycle_lnd.txt
-cat $INPUT_FILES/set8_contour_DJF-JJA.txt 			> ${WKDIR}master_set8_contourDJF-JJA.txt
+cat $INPUT_FILES/set8_contour_DJF-JJA.txt 		> ${WKDIR}master_set8_contourDJF-JJA.txt
+cat $INPUT_FILES/set8_ann_cycle.txt 			> ${WKDIR}master_set8_ann_cycle.txt
+cat $INPUT_FILES/set8_ann_cycle_lnd.txt 		> ${WKDIR}master_set8_ann_cycle_lnd.txt
 
 set nan_exit = 0
 

@@ -132,7 +132,7 @@ print("Now printing plot #" + p)
                 titstr(4) = "Heterotrophic Respiration"
                 titstr(5) = "Ecosystem Respiration"
                 titstr(6) = "Supplement to Mineral Nitrogen"
-                titstr(7) = "Leached Mineral Nitrogen"
+                titstr(7) = "Mineral Nitrogen Loss to Water Body"
         else
             if (casa .eq. 1) then
                 fileName   = "set3_casaFlx.txt"
@@ -178,12 +178,13 @@ print("Now printing plot #" + p)
      if (hydroFlag .eq. 1) then
         fileName   = "set3_hydro.txt"
         plot_name  = "hydro"
-        titstr = new(5,"string")
+        titstr = new(6,"string")
         titstr(0) = "Water in Unconfined Aquifer"       ; WA
-        titstr(1) = "Total Water Storage"               ; WT
+        titstr(1) = "Total Water Storage"               ; TWS
         titstr(2) = "Water Table Depth"                 ; ZWT
-        titstr(3) = "Aquifer Recharge Rate"             ; QCHARGE
-        titstr(4) = "Frac Water Table at Surface"       ; FCOV
+        titstr(3) = "Perch Water Table Depth"           ; ZWT_PERCH
+        titstr(4) = "Aquifer Recharge Rate"             ; QCHARGE
+        titstr(5) = "Frac Water Table at Surface"       ; FCOV
      else
         continue
      end if 

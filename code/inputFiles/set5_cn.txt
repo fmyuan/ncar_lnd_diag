@@ -51,18 +51,8 @@ globalTotlAnn   SUPPLEMENT_TO_SMINN
 globalTotlAnn   SMIN_NO3_LEACHED
 globalTotlNat   SMINN
 globalTotlNat   RETRANSN
-globalTotlNat   COL_CTRUNC
-globalTotlNat   PFT_CTRUNC
-globalTotlNat   COL_NTRUNC
-globalTotlNat   PFT_NTRUNC
-globalTotlAnn   COL_FIRE_CLOSS
 globalTotlAnn   PFT_FIRE_CLOSS
-globalTotlAnn   COL_FIRE_NLOSS
 globalTotlAnn   PFT_FIRE_NLOSS
-globalMeanNat   FIRESEASONL
-globalMeanNat   FIRE_PROB
-globalMeanNat   ANN_FAREA_BURNED
-globalMeanNat   MEAN_FIRE_PROB
 globalTotlAnn   CWDC_HR
 globalTotlAnn   CWDC_LOSS
 globalTotlAnn   FROOTC_ALLOC
@@ -86,8 +76,6 @@ globalTotlNat   PRIMP
 globalTotlNat   TOTLITP
 globalTotlNat   TOTSOMP
 globalTotlNat   TOTECOSYSP
-globalTotlNat   NPOOL
-globalTotlNat   PPOOL
 globalTotlAnn   POTENTIAL_IMMOB_P
 globalTotlAnn   ACTUAL_IMMOB_P
 globalTotlAnn   SMINP_TO_PLANT

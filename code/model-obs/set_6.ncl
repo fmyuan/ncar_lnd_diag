@@ -53,7 +53,7 @@ begin
 ; main loop
 ;*************************************************
 
-nplots = 11		
+nplots = 12		
 
 ; loop over plots
 do p=0,nplots-1
@@ -117,7 +117,7 @@ print("Now printing plot #" + p)
                 titstr(4) = "Heterotrophic Respiration"
                 titstr(5) = "Ecosystem Respiration"
                 titstr(6) = "Supplement to Mineral Nitrogen"
-                titstr(7) = "Leached Mineral Nitrogen"
+                titstr(7) = "Mineral Nitrogen Loss to Water Body"
         else
             if (casa .eq. 1) then
                 fileName   = "set3_casaFlx.txt"
@@ -138,20 +138,35 @@ print("Now printing plot #" + p)
      if (cn .eq. 1) then
 	fileName   = "set6_fireFlx.txt"
 	plot_name  = "frFlx"
-        titstr = new(8,"string")
-        titstr(0) = "Column-Level Fire C Loss"
-        titstr(1) = "Column-Level Fire N Loss"
-        titstr(2) = "PFT-Level Fire C Loss"
-        titstr(3) = "PFT-Level Fire N Loss"
-        titstr(4) = "Fire Season Length"
-        titstr(5) = "Fire Probability"
-        titstr(6) = "Annual Fraction Area Burned"
-        titstr(7) = "Mean Fire Probability"
+        titstr = new(2,"string")
+        ;titstr(0) = "Column-Level Fire C Loss"
+        ;titstr(1) = "Column-Level Fire N Loss"
+        titstr(0) = "PFT-Level Fire C Loss"
+        titstr(1) = "PFT-Level Fire N Loss"
+        ;titstr(4) = "Fire Season Length"
+        ;titstr(5) = "Fire Probability"
+        ;titstr(6) = "Annual Fraction Area Burned"
+        ;titstr(7) = "Mean Fire Probability"
      else
 	continue
      end if
   end if
-  if (p .eq. 5) then 
+  if (p .eq. 5) then
+     if (cn .eq. 1) then
+        fileName   = "set6_carbonStock.txt"
+        plot_name  = "crbStock"
+        titstr = new(6,"string")
+        titstr(0) = "Total Ecosystem Carbon"
+        titstr(1) = "Total Soil Organic Matter Carbon"
+        titstr(2) = "Total Vegetation Carbon"
+        titstr(3) = "Total Litter Carbon"
+        titstr(4) = "Coarse Woody Debris Carbon"
+        titstr(5) = "Land Cover Change Flux"
+     else
+        continue
+     end if
+  end if
+  if (p .eq. 6) then 
         vars         = (/"TSOI"/)
         scale_type   = (/"globalMeanNat"/)
         nvars        = dimsizes(vars)
@@ -161,7 +176,7 @@ print("Now printing plot #" + p)
         titstr       = new(1,"string")
         titstr(0)    = "Mean Soil Temperature"
   end if
-  if (p .eq. 6) then 
+  if (p .eq. 7) then 
         vars         = (/"SOILLIQ"/)
         scale_type   = (/"globalMeanNat"/)
         nvars        = dimsizes(vars)
@@ -171,7 +186,7 @@ print("Now printing plot #" + p)
         titstr       = new(1,"string")
         titstr(0)    = "Soil Liquid Water"
   end if
-  if (p .eq. 7) then 
+  if (p .eq. 8) then 
         vars         = (/"SOILICE"/)
         scale_type   = (/"globalMeanNat"/)
         nvars        = dimsizes(vars)
@@ -181,7 +196,7 @@ print("Now printing plot #" + p)
         titstr       = new(1,"string")
         titstr(0)    = "Soil Ice"
   end if
-  if (p .eq. 8) then 
+  if (p .eq. 9) then 
         vars         = (/"TOTSOILICE","TOTSOILLIQ"/)
         scale_type   = (/"globalMeanNat","globalMeanNat"/)
         nvars        = dimsizes(vars)
@@ -192,7 +207,7 @@ print("Now printing plot #" + p)
         titstr(0)    = "Total Soil Ice"
         titstr(1)    = "Total Soil Liquid Water"
   end if
-  if (p .eq. 9) then 
+  if (p .eq. 10) then 
         vars         = (/"SNOWLIQ","SNOWICE"/)
         scale_type   = (/"globalMeanNat","globalMeanNat"/)
         nvars        = dimsizes(vars)
@@ -203,16 +218,17 @@ print("Now printing plot #" + p)
         titstr(0)    = "Total Snow Liquid Water"
         titstr(1)    = "Total Snow Ice"
   end if
-  if (p .eq. 10) then
+  if (p .eq. 11) then
      if (hydroFlag .eq. 1) then
 	fileName   = "set6_hydro.txt"
 	plot_name  = "hydro"
-        titstr = new(5,"string")
-        titstr(0) = "Water in Unconfined Aquifer"	; WA
-        titstr(1) = "Total Water Storage"		; WT
-        titstr(2) = "Water Table Depth"			; ZWT
-        titstr(3) = "Aquifer Recharge Rate"		; QCHARGE
-        titstr(4) = "Frac Water Table at Surface"	; FCOV
+        titstr = new(6,"string")
+        titstr(0) = "Water in Unconfined Aquifer"; WA
+        titstr(1) = "Total Water Storage"        ; TWS
+        titstr(2) = "Water Table Depth"          ; ZWT
+        titstr(3) = "Perched Water Table Depth"  ; ZWT_PERCH
+        titstr(4) = "Aquifer Recharge Rate"      ; QCHARGE
+        titstr(5) = "Frac Water Table at Surface"; FCOV
      else
 	continue
      end if
@@ -220,7 +236,7 @@ print("Now printing plot #" + p)
 ;----------------------------------------------------------
 ; read in file and parse into variables
 ;----------------------------------------------------------
-  if (p .lt. 5 .or. p .eq. 10)
+  if (p .lt. 6 .or. p .eq. 11)
   	tmp = stringtocharacter(asciiread(inputdir+"/"+fileName,-1,"string"))
   	nvars = dimsizes(tmp(:,0))
   	nplotsPerCol = (nvars+1)/2
@@ -526,7 +542,7 @@ wcStartp = systemfunc("date")
             draw(legend)
             delete(legend)
       else 
-         if (p .eq. 8 .or. p .eq. 9) then                          ; snowliq + snowice
+         if (p .eq. 9 .or. p .eq. 10) then                          ; snowliq + snowice
             pres@gsnPanelRowSpec = True
             gsn_panel(wks,plot,(/1,1/),pres)               ; draw panel plot
             gsn_legend_ndc(wks,2,cases,0.3,0.12,lgres)    ; draw common legend    MAY HAVE TO ADJUST Y
@@ -635,7 +651,7 @@ end do   ; end plot loop
           flag1 ({box_s(ar):box_n(ar)},{box_w(ar):box_e(ar)}) = 0.1*fland1 ({box_s(ar):box_n(ar)},{box_w(ar):box_e(ar)}) - 1.e-36
     end do
  else
-   do ar = 0, nreg-4  ; don't include northern and southern hemisphere and global
+   do ar = 0, nreg-1
      	flag1 ({box_s(ar):box_n(ar)},{box_w(ar):box_e(ar)}) = 0.1*fland1 ({box_s(ar):box_n(ar)},{box_w(ar):box_e(ar)}) - 1.e-36
    end do
  end if
