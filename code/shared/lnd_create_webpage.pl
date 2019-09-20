@@ -128,27 +128,26 @@ sub mainHeader1
 {
 	local($num) = @_;
 	$num++;
-	$path = "\"http://www.cgd.ucar.edu/cms/mstevens/amwg/images/NCAR.gif\"";
 	printf fp_main "<HTML>\n";
 	printf fp_main "<HEAD>\n";
-	printf fp_main "<TITLE>LND_DIAG Diagnostic Plots</TITLE>\n";
+	printf fp_main "<TITLE>LND_DIAG Diagnostic Plot</TITLE>\n";
 	printf fp_main "</HEAD>\n";
 	printf fp_main "<BODY BGCOLOR=\"bisque\">\n";
-	printf fp_main "<img src=$path border=1 hspace=10 align=left alt=\"NCAR logo\">\n";
-	printf fp_main "<p>\n";
-	printf fp_main "<font color=maroon size=+3><b>\n";
-	printf(fp_main "<font color=maroon size=+3><b>$prefix_1<br> \n");
-	printf(fp_main "and<br>\n");
-	printf(fp_main "$prefix_2<br></b></font></a> \n");
+	printf fp_main "<img src=\"logo-ncar-active-large.png\" width=\"100\" height=\"30\" hspace=10 align=left alt=\"NCAR logo\">\n";
+	printf fp_main "<br> \n";
+	printf fp_main "<TABLE>\n";
+	printf fp_main "<font color=blue size=5>LND_DIAG Diagnostics & Plotting Tools v.4.2.28</font></A>\n";
+	printf fp_main "<br>\n";
+	printf fp_main "<font color=black>(Script Source - forked: https://github.com/fmyuan/ncar_lnd_diag)\n";
+	printf fp_main "</TABLE>\n";
+	printf fp_main "<font color=maroon size=12><b><center>\n";
+	printf(fp_main "<font color=maroon size=12><b>$prefix_1<br> \n");
+	printf(fp_main "vs. <br>\n");
+	printf(fp_main "$prefix_2<br></b></font></a> </center>\n");
 	printf fp_main "<TR>\n";
 	printf fp_main "</b></font>\n";
 	printf fp_main "<br clear=left>\n";
 	printf fp_main "<p>\n";
-	printf fp_main "<TABLE>\n";
-	printf fp_main "  <TH><A HREF=\"http://www.cgd.ucar.edu/tss/clm/diagnostics/index.html\">\n";
-	printf fp_main "<font color=blue>LND_DIAG Diagnostics Plots</font></A>\n";
-	printf fp_main "<font color=black>Source: $source\n";
-	printf fp_main "</TABLE>\n";
 	printf fp_main "<hr noshade size=2 size=\"100%\">\n";
 	printf fp_main "<TABLE>\n";
 	printf fp_main "<TR>\n";
@@ -208,12 +207,12 @@ sub set_Inactive
 sub setHeader
 {
 
-	if ($set == 5 || $set == 9)  { $path = "\"http://www.cgd.ucar.edu/tss/clm/diagnostics/images/3Dglobe.gif\""; }
+	if ($set == 5 || $set == 9)  { $path = "\"../3Dglobe.gif\""; }
 	else {
 		if ($set == 3 | $set == 4) { $sn = "s"; }
 		else                       { $sn = "sn";}
-	        if (  $set == 8) { $path = "\"http://www.cgd.ucar.edu/tss/clm/diagnostics/images/SET".$set.".jpg\""; }
-		else             { $path = "\"http://www.cgd.ucar.edu/tss/clm/diagnostics/images/SET".$set.$sn.".gif\""; }
+	        if (  $set == 8) { $path = "\"../SET".$set.".jpg\""; }
+		else             { $path = "\"../SET".$set.$sn.".gif\""; }
 	}
 
 	# write generalized header
@@ -229,11 +228,13 @@ sub setHeader
 
 	# write set-specific header
 	$description = &setDescription($set);
-	printf(fp_wp "<font color=maroon size=+3><b>$prefix_1<br> \n");
-	printf(fp_wp "and<br>\n");
-	printf(fp_wp "$prefix_2<br></b></font></a> \n");
+	printf(fp_wp "<p> \n");
+	printf(fp_wp "<font color=maroon size=+5><b><center>$prefix_1<br> \n");
+	printf(fp_wp "vs. <br>\n");
+	printf(fp_wp "$prefix_2<br></b></font></a> </center>\n");
 	printf(fp_wp "</b></font>\n <p> \n <a href=\"../setsIndex.html\">\n");
-	printf(fp_wp "<font color=blue><b>Back to diagnostic sets</b></font></a> \n");
+	printf(fp_wp "<font color=blue size=+1><b>Back to diagnostic sets INDEX</b></font>\n");
+	printf(fp_wp "</a> \n");
 	printf(fp_wp "<br clear=left> \n <p> \n");
 	printf(fp_wp "<b><font color=maroon size=+2>Set $set Description: <b></font>$description\n");
 	printf(fp_wp "<br clear=left> \n <p> \n");

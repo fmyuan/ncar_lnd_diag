@@ -310,6 +310,8 @@ if ($setRestart_flag == 1) then
  endif
 endif
 
+cp {$INPUT_FILES}/{$var_master_cn}              {$WKDIR}variable_master.ncl
+
 if ($set_0 == 1) then
   echo 'Starting set0 ----------------------------------------'
   if (-e $WKDIR/NaN.txt) then
@@ -592,6 +594,12 @@ if ($web_pages == 1) then
     		mkdir $WEBDIR || exit 1
 	endif
 	cd $WEBDIR
+
+    # images shared (used to link to NCAR's web image, which not always there)
+    echo 'DIAG_SHARED=' $DIAG_SHARED
+    cp $DIAG_SHARED/logo-ncar-active-large.png $WEBDIR/
+    cp $DIAG_SHARED/SET*.gif $WEBDIR/
+    cp $DIAG_SHARED/3Dglobe.gif $WEBDIR/
 
 	#--------------------------
 	# make sure set directories exist
