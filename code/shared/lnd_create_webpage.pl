@@ -538,12 +538,22 @@ sub set2Page
 
 sub set3and6Page
 {
-	%polar = ( 'Alaskan_Arctic',   'Alaskan Arctic', 	# polar
+	%ngee = ( 'NGEE_AK-BEO',     'NGEE_AK-BEO', 	# NGEE Arctic intensive study sites
+		    'NGEE_AK-Kougarok',  'NGEE_AK-Kougarok',
+		    'NGEE_AK-Council',   'NGEE_AK-Council',
+		    'NGEE_AK-Teller',    'NGEE AK-Teller',);
+
+	%arctic = ( 'Alaskan_Arctic',   'Alaskan Arctic', 	# arctic only
 		    'Canadian_Arctic',  'Canadian Arctic',
 		    'Greenland',        'Greenland',
 		    'Russian_Arctic',   'Russian Arctic',);
-#		    'Polar',            'Polar',
-#		    'Antarctica',       'Antarctica', );
+
+	%polar = ( 'Alaskan_Arctic',   'Alaskan Arctic', 	# polar
+		    'Canadian_Arctic',  'Canadian Arctic',
+		    'Greenland',        'Greenland',
+		    'Russian_Arctic',   'Russian Arctic',
+		    'Polar',            'Polar',
+		    'Antarctica',       'Antarctica', );
 
 	%boreal = ( 'Alaska',		'Alaska',		# boreal
 		    'Northwest_Canada', 'Northwest Canada', 
@@ -621,7 +631,7 @@ sub set3and6Page
          }
 #	@regions = ("HEMISPHERIC AND GLOBAL","POLAR","BOREAL","MIDDLE LATITUDES","TROPICAL RAINFOREST","TROPICAL SAVANNA",
 #			   "ARID","HIGHLAND","ASIA");
-	@regions = ("POLAR", "BOREAL");
+	@regions = ("NGEE", "ARCTIC", "BOREAL");
 #	@paleo_regions = ("HEMISPHERIC AND GLOBAL");
 
 	# print set-specific header information
@@ -703,6 +713,8 @@ sub set3and6Page
 	foreach $region (@use_region)
 	{
 	    undef $nList;
+	    if ($region eq "NGEE")                   { %nList = %ngee;     }
+	    if ($region eq "ARCTIC")                 { %nList = %arctic;   }
 	    if ($region eq "POLAR")                  { %nList = %polar;    }
 	    if ($region eq "BOREAL")                 { %nList = %boreal;   }
 	    if ($region eq "MIDDLE LATITUDES")       { %nList = %midLat;   }
