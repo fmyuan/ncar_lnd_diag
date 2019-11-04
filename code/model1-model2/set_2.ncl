@@ -60,9 +60,9 @@ begin
   zoom  = stringtointeger(getenv("reg_contour")); # (1 = SUB, 0 = GLOBAL)
   if (zoom.eq.1)then
      min_lat = stringtofloat(getenv("min_lat"))
-     max_lat = stringtofloat(getenv("min_lat"))
+     max_lat = stringtofloat(getenv("max_lat"))
      min_lon = stringtofloat(getenv("min_lon"))
-     max_lon = stringtofloat(getenv("min_lon"))
+     max_lon = stringtofloat(getenv("max_lon"))
   end if
   seasons = (/"DJF","JJA","MAM","SON","ANN"/)
 ;*************************************************
@@ -751,14 +751,31 @@ begin
                  end if
               end if
 
+              if (zoom.eq.1) then
+                res@mpMinLatF = min_lat
+                res@mpMaxLatF = max_lat
+                if (projection .ne. 2) then
+                   res@mpMinLonF = min_lon
+                   res@mpMaxLonF = max_lon
+                end if
+              end if
+
               ctr = 0
-              plot(ctr) = gsn_csm_contour_map(wks,var_avg_1,res)    ; case 1 plot
+              if(projection .eq. 2) then
+                plot(ctr) = gsn_csm_contour_map_polar(wks,var_avg_1,res)    ; case 1 plot
+              else
+                plot(ctr) = gsn_csm_contour_map(wks,var_avg_1,res)    ; case 1 plot
+              end if
               ctr = ctr+1
 
 ;               Note:  Don't delete res here - save until after obs are posted.
               res@tiMainString    = cases(1) ; set case 2 titles
               res@gsnCenterString = " (yrs " + yrs_ave2 + ")"
-              plot(ctr) = gsn_csm_contour_map(wks,var_avg_2,res)   ; case 2 plot
+              if(projection .eq. 2) then
+                plot(ctr) = gsn_csm_contour_map_polar(wks,var_avg_2,res)    ; case 2 plot
+              else
+                plot(ctr) = gsn_csm_contour_map(wks,var_avg_2,res)   ; case 2 plot
+              end if
               ctr = ctr+1
 
 ;               Note:  Don't delete res here - save until after obs are posted.
@@ -787,7 +804,21 @@ begin
                     res@pmLabelBarOrthogonalPosF = 0.075
                     res@tiMainOffsetYF = -.0075
                  end if
-                 plot(ctr) = gsn_csm_contour_map(wks,var_avg_3,res)
+
+                 if (zoom.eq.1) then
+                    res@mpMinLatF = min_lat
+                    res@mpMaxLatF = max_lat
+                    if (projection .ne. 2) then
+                       res@mpMinLonF = min_lon
+                       res@mpMaxLonF = max_lon
+                    end if
+                 end if
+
+                 if(projection .eq. 2) then
+                   plot(ctr) = gsn_csm_contour_map_polar(wks,var_avg_3,res)
+                 else
+                   plot(ctr) = gsn_csm_contour_map(wks,var_avg_3,res)
+                 end if
                  ctr = ctr+1
               end if
               delete(res)                  ; delete res in time for difference plots.
@@ -845,9 +876,22 @@ begin
                     res@tiMainOffsetYF = -.0075
                  end if
 
+                 if (zoom.eq.1) then
+                    res@mpMinLatF = min_lat
+                    res@mpMaxLatF = max_lat
+                    if (projection .ne. 2) then
+                       res@mpMinLonF = min_lon
+                       res@mpMaxLonF = max_lon
+                    end if
+                 end if
+
                  res@gsnLeftString    = ""    ;vars(i)        ; could also use info@longName if we want
                  res@gsnRightString   = ""    ;useUnits        ; assume same units for x1 and x2
-                 plot(ctr) = gsn_csm_contour_map(wks,diff,res)
+                 if(projection .eq. 2) then
+                   plot(ctr) = gsn_csm_contour_map_polar(wks,diff,res)
+                 else
+                   plot(ctr) = gsn_csm_contour_map(wks,diff,res)
+                 end if
                  delete(diff)
                  delete(mindiff)
                  delete(maxdiff)
@@ -861,9 +905,22 @@ begin
                  mindiff = min(diff)
                  maxdiff = max(diff)
 
+                 if (zoom.eq.1) then
+                    res@mpMinLatF = min_lat
+                    res@mpMaxLatF = max_lat
+                    if (projection .ne. 2) then
+                       res@mpMinLonF = min_lon
+                       res@mpMaxLonF = max_lon
+                    end if
+                 end if
+
                  res@cnLevelSelectionMode = "ExplicitLevels" ; explicit contour levels
                  res@cnLevels       = info@cn_LevelsDiffObs   ; contour levels
-                 plot(ctr) = gsn_csm_contour_map(wks,diff,res)
+                 if(projection .eq. 2) then
+                   plot(ctr) = gsn_csm_contour_map_polar(wks,diff,res)
+                 else
+                   plot(ctr) = gsn_csm_contour_map(wks,diff,res)
+                 end if
                  delete(res)
                  delete(diff)
                  delete(mindiff)
@@ -960,9 +1017,22 @@ begin
               res@tiMainString   = cases(0) 
               res@gsnCenterString= "- "+cases(1)
 
+              if (zoom.eq.1) then
+                 res@mpMinLatF = min_lat
+                 res@mpMaxLatF = max_lat
+                 if (projection .ne. 2) then
+                    res@mpMinLonF = min_lon
+                    res@mpMaxLonF = max_lon
+                 end if
+              end if
+
               res@gsnLeftString    = ""       ; vars(i)        ; could also use info@longName if we want
               res@gsnRightString   = ""       ; useUnits        ; assume same units for x1 and x2
-              plot(ctr) = gsn_csm_contour_map(wks,diff,res)
+              if(projection .eq. 2) then
+                plot(ctr) = gsn_csm_contour_map_polar(wks,diff,res)
+              else
+                plot(ctr) = gsn_csm_contour_map(wks,diff,res)
+              end if
               delete(res)
               ctr = ctr+1
               delete([/diff,mindiff,maxdiff/])
@@ -1057,7 +1127,20 @@ begin
                     res@tiMainOffsetYF = -.0075
                  end if
 
-                 plot(ctr) = gsn_csm_contour_map(wks, pfinal,res) ; will be sig test
+                 if (zoom.eq.1) then
+                    res@mpMinLatF = min_lat
+                    res@mpMaxLatF = max_lat
+                    if (projection .ne. 2) then
+                       res@mpMinLonF = min_lon
+                       res@mpMaxLonF = max_lon
+                    end if
+                 end if
+
+                 if(projection .eq. 2) then
+                   plot(ctr) = gsn_csm_contour_map_polar(wks,pfinal,res)
+                 else
+                   plot(ctr) = gsn_csm_contour_map(wks, pfinal,res) ; will be sig test
+                 end if
                  delete([/res,pfinal,p1d,d131d,d231d,diff13,diff23/])
                  ctr = ctr+1
               end if
@@ -1117,7 +1200,21 @@ begin
               end if
               res@tiMainOffsetYF = 0
 
-              plot(ctr) = gsn_csm_contour_map(wks,prob,res) ; will be sig test
+
+              if (zoom.eq.1) then
+                 res@mpMinLatF = min_lat
+                 res@mpMaxLatF = max_lat
+                 if (projection .ne. 2) then
+                    res@mpMinLonF = min_lon
+                    res@mpMaxLonF = max_lon
+                 end if
+              end if
+
+              if(projection .eq. 2) then
+                plot(ctr) = gsn_csm_contour_map_polar(wks,prob,res)
+              else
+                plot(ctr) = gsn_csm_contour_map(wks,prob,res) ; will be sig test
+              end if
               delete(res)
       
               if (obsFlag .eq. 1 .and. plotObs .eq. 1) then   ; panel plot
@@ -1227,17 +1324,42 @@ begin
                  res@gsnRightString = ""    ;useUnits        ; assume same units for x1 and x2
                  res@gsnCenterString = "(yrs " + yrs_ave1 +")" 
 
-                 plot(0) = gsn_csm_contour_map(wks,var_avg_1(k,:,:),res)    ; 4D case 1 plot
+                 if (zoom.eq.1) then
+                    res@mpMinLatF = min_lat
+                    res@mpMaxLatF = max_lat
+                    if (projection .ne. 2) then
+                       res@mpMinLonF = min_lon
+                       res@mpMaxLonF = max_lon
+                    end if
+                 end if
 
+                 if(projection .eq. 2) then
+                   plot(0) = gsn_csm_contour_map_polar(wks,var_avg_1(k,:,:),res)
+                 else
+                   plot(0) = gsn_csm_contour_map(wks,var_avg_1(k,:,:),res)    ; 4D case 1 plot
+                 end if
 ;                  set case 2 titles (4D)
 ;                  Note:  Don't delete res here - save until after obs are posted.
 
                  delete(min1)
                  delete(max1)
+ 
+                 if (zoom.eq.1) then
+                    res@mpMinLatF = min_lat
+                    res@mpMaxLatF = max_lat
+                    if (projection .ne. 2) then
+                       res@mpMinLonF = min_lon
+                       res@mpMaxLonF = max_lon
+                    end if
+                 end if
            
                  res@tiMainString           = cases(1)
                  res@gsnCenterString = "(yrs " + yrs_ave2 +")"
-                 plot(1) = gsn_csm_contour_map(wks,var_avg_2(k,:,:),res)   ; 4D case 2 plot
+                 if(projection .eq. 2) then
+                   plot(1) = gsn_csm_contour_map_polar(wks,var_avg_2(k,:,:),res)
+                 else
+                   plot(1) = gsn_csm_contour_map(wks,var_avg_2(k,:,:),res)   ; 4D case 2 plot
+                 end if
                  delete(res)
 
                  res  = True
@@ -1310,7 +1432,21 @@ begin
                  res@gsnRightString = ""    ;useUnits        ; assume same units for x1 and x2
                  res@tiMainString           = cases(0)
                  res@gsnCenterString = "- "+cases(1)
-                 plot(2) = gsn_csm_contour_map(wks,diff(k,:,:),res)
+
+                 if (zoom.eq.1) then
+                    res@mpMinLatF = min_lat
+                    res@mpMaxLatF = max_lat
+                    if (projection .ne. 2) then
+                       res@mpMinLonF = min_lon
+                       res@mpMaxLonF = max_lon
+                    end if
+                 end if
+
+                 if(projection .eq. 2) then
+                   plot(2) = gsn_csm_contour_map_polar(wks,diff(k,:,:),res)
+                 else
+                   plot(2) = gsn_csm_contour_map(wks,diff(k,:,:),res)
+                 end if
                  delete(res)
                  delete(diff) 
 
@@ -1357,7 +1493,21 @@ begin
                  res@gsnCenterString        = " "
                  res@gsnRightString       = " "
                  res@gsnLeftString      = "Cells are significant at " + sig_lvl +" level"
-                 plot(3) = gsn_csm_contour_map(wks,prob(k,:,:),res) ; will be sig test
+
+                 if (zoom.eq.1) then
+                    res@mpMinLatF = min_lat
+                    res@mpMaxLatF = max_lat
+                    if (projection .ne. 2) then
+                       res@mpMinLonF = min_lon
+                       res@mpMaxLonF = max_lon
+                    end if
+                 end if
+
+                 if(projection .eq. 2) then
+                   plot(3) = gsn_csm_contour_map_polar(wks,prob(k,:,:),res)
+                 else
+                   plot(3) = gsn_csm_contour_map(wks,prob(k,:,:),res) ; will be sig test
+                 end if
                  delete(res)
                  pres@txString = seasons(n)+" "+vars(i)+" Level " + k+" ("+useUnits+")" ; "
                  gsn_panel(wks,plot,(/2,2/),pres)           ; draw panel plot

@@ -1237,10 +1237,21 @@ begin
         res@mpGridLatSpacingF     = 30.0
         res@mpGridLineDashPattern    =  2        ; Set grid line dash pattern (dash)
         res@mpGridLineThicknessF     = 0.5       ; Set grid line thickness
-     else
-        res@mpProjection = "Robinson"
-        res@mpPerimOn    = False
-        res@mpGridLineColor = "transparent"       
+     else 
+        if (proj_type.eq.2) then
+          res@mpProjection = "LambertEqualArea"
+          res@gsnPolar = "NH"
+          res@gsnPolarLabelDistance = 1.1
+          res@gsnPolarLabelFontHeightF = 0.015
+          res@mpGridAndLimbOn = True
+          res@mpGridLineDashPattern =  2 
+          res@mpGridLineThicknessF  = 0.5 
+          res@mpGridLatSpacingF     = 5.0
+       else
+          res@mpProjection = "Robinson"
+          res@mpPerimOn    = False
+          res@mpGridLineColor = "transparent"
+       end if
      end if
      res@mpFillOn           = False
      res@mpOutlineOn           = True
@@ -1280,11 +1291,22 @@ begin
         res@mpGridLineDashPattern    =  2           ; Set grid line dash pattern (dash)
         res@mpGridLineThicknessF     = 0.5          ; Set grid line thickness
      else
-        res@mpProjection = "Robinson"
-        res@mpPerimOn    = False
-        res@mpGridLineColor = "transparent"
-        res@gsnLeftStringParallelPosF = 0.1
-        res@gsnRightStringParallelPosF = 0.9        
+        if (proj_type.eq.2) then
+          res@mpProjection = "LambertEqualArea"
+          res@gsnPolar = "NH"
+          res@gsnPolarLabelDistance = 1.1
+          res@gsnPolarLabelFontHeightF = 0.015
+          res@mpGridAndLimbOn = True
+          res@mpGridLineDashPattern =  2 
+          res@mpGridLineThicknessF  = 0.5 
+          res@mpGridLatSpacingF     = 5.0
+        else
+          res@mpProjection = "Robinson"
+          res@mpPerimOn    = False
+          res@mpGridLineColor = "transparent"
+          res@gsnLeftStringParallelPosF = 0.1
+          res@gsnRightStringParallelPosF = 0.9
+       end if
      end if
      res@mpFillOn                 = False
      res@mpOutlineOn              = True
@@ -1329,6 +1351,17 @@ begin
       res@mpProjection = "Robinson"
       res@mpPerimOn    = False
       res@mpGridLineColor = "transparent"   
+   else 
+      if (proj_type.eq.2) then
+          res@mpProjection = "LambertEqualArea"
+          res@gsnPolar = "NH"
+          res@gsnPolarLabelDistance = 1.1
+          res@gsnPolarLabelFontHeightF = 0.015
+          res@mpGridAndLimbOn = True
+          res@mpGridLineDashPattern =  2 
+          res@mpGridLineThicknessF  = 0.5 
+          res@mpGridLatSpacingF     = 5.0
+      end if
    end if
    res@mpFillOn                 = False
    res@mpOutlineOn              = True
@@ -1369,6 +1402,17 @@ begin
            res@mpProjection = "Robinson"
            res@mpPerimOn    = False
            res@mpGridLineColor = "transparent"   
+        else 
+           if (proj_type.eq.2) then
+             res@mpProjection = "LambertEqualArea"
+             res@gsnPolar = "NH"
+             res@gsnPolarLabelDistance = 1.1
+             res@gsnPolarLabelFontHeightF = 0.015
+             res@mpGridAndLimbOn = True
+             res@mpGridLineDashPattern =  2 
+             res@mpGridLineThicknessF  = 0.5 
+             res@mpGridLatSpacingF     = 5.0
+           end if
         end if
         res@mpFillOn                 = False
         res@mpOutlineOn              = True

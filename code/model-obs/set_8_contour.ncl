@@ -42,9 +42,9 @@ useCommon1 = getenv("UseCommonName_1")
   zoom  = stringtointeger(getenv("reg_contour")); # (0 = SUB, 1 = GLOBAL)
   if(zoom.eq.0)then
     min_lat = stringtofloat(getenv("min_lat"))
-    max_lat = stringtofloat(getenv("min_lat"))
+    max_lat = stringtofloat(getenv("max_lat"))
     min_lon = stringtofloat(getenv("min_lon"))
-    max_lon = stringtofloat(getenv("min_lon"))
+    max_lon = stringtofloat(getenv("max_lon"))
   end if
   seasons = (/"DJF","JJA","MAM","SON","ANN"/)
 ;*************************************************

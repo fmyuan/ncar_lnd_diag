@@ -28,6 +28,15 @@ begin
   flandmask = stringtofloat(land_mask)
  useCommon1 = getenv("UseCommonName_1")
 
+  projection=getenv("projection")
+  zoom  = stringtointeger(getenv("reg_contour")); # (1 = SUB, 0 = GLOBAL)
+  if (zoom.eq.1)then
+     min_lat = stringtofloat(getenv("min_lat"))
+     max_lat = stringtofloat(getenv("max_lat"))
+     min_lon = stringtofloat(getenv("min_lon"))
+     max_lon = stringtofloat(getenv("max_lon"))
+  end if
+
 ;*************************************************
 ; get case names and create filenames to read in
 ;*************************************************
@@ -1243,7 +1252,7 @@ if(plot_check.eq.True)then
       end if
       if (p .eq. 6) then
             pres@gsnPanelCenter      = True
-            gsn_panel(wks,plot,(/2,2,1/),pres) ; draw panel plot
+            gsn_panel(wks,plot,(/2,2,2/),pres) ; draw panel plot
             lgres@lgLabelFontHeightF = 0.028
             gsn_legend_ndc(wks,2,cases,0.275,0.17,lgres) ; draw common legend        
             lgres@lgLabelFontHeightF = 0.015
@@ -1341,23 +1350,46 @@ end if        ;  end of plot_check loop
         delete(res)
  end if
  res = True
- res@mpProjection = "Robinson"
- res@mpPerimOn    = False
- res@mpGridLineColor = "transparent"     
- res@cnFillOn = True
- res@cnLineLabelsOn = False
- res@lbLabelBarOn = False
- res@cnLinesOn =  False
- res@mpGridLonSpacingF   = 180.0            ; Set lon grid spacing
- res@mpGridLatSpacingF    = 90.0           ; Set lat grid spacing
- res@mpFillOn             =  False
- res@mpOutlineOn          =  True
- res@mpGridAndLimbOn      =  True
- res@mpGridLineDashPattern =  2            ; Set grid line dash pattern (dash)
- res@mpGridLineThicknessF   = 0.5          ; Set grid line thickness
+ 
+ if(projection .eq. 2) then
+    res@mpProjection = "LambertEqualArea"
+    res@gsnPolar = "NH"
+    res@gsnPolarLabelDistance = 1.1
+    res@gsnPolarLabelFontHeightF = 0.015
+    res@mpGridAndLimbOn = True
+    res@mpGridLineDashPattern =  2 
+    res@mpGridLineThicknessF  = 0.5 
+    res@mpGridLatSpacingF     = 5.0
+
+    ; res@mpPerimOn    = False          ; background coastal line?
+    res@cnLineLabelsOn = False
+    res@lbLabelBarOn = False
+    res@cnLinesOn =  False
+    res@mpFillOn             =  False
+    res@mpOutlineOn          =  True
+    res@mpGridAndLimbOn      =  True
+    res@gsnMaximize = True
+    res@cnLevelSelectionMode =  "ExplicitLevels"
+ 
+ else
+    res@mpProjection = "Robinson"
+    res@mpPerimOn    = False
+    res@mpGridLineColor = "transparent"     
+    res@cnLineLabelsOn = False
+    res@lbLabelBarOn = False
+    res@cnLinesOn =  False
+    res@mpGridLonSpacingF   = 180.0            ; Set lon grid spacing
+    res@mpGridLatSpacingF    = 90.0           ; Set lat grid spacing
+    res@mpFillOn             =  False
+    res@mpOutlineOn          =  True
+    res@mpGridAndLimbOn      =  True
+    res@mpGridLineDashPattern =  2            ; Set grid line dash pattern (dash)
+    res@mpGridLineThicknessF   = 0.5          ; Set grid line thickness
+    res@gsnMaximize = True
+    res@cnLevelSelectionMode =  "ExplicitLevels"
+
+ end if
  sstr=(/" "/)
- res@gsnMaximize = True
- res@cnLevelSelectionMode =  "ExplicitLevels"
  wks = gsn_open_wks(plot_type,wkdir+"set3_reg_all")
  cmap = (/"(/1.00, 1.00, 1.00/)", "(/0.00, 0.00, 0.00/)", \
           "(/1.00, 1.00, 1.00/)", "Blue" /)
@@ -1396,9 +1428,22 @@ end if        ;  end of plot_check loop
     end do
  end if
 
- res@gsnCenterString = "Model Data Regions - All"
- plot = gsn_csm_contour_map(wks, flag1, res)
+ if (zoom.eq.1) then
+    res@mpMinLatF = min_lat
+    res@mpMaxLatF = max_lat
+    if (projection .ne. 2) then
+       res@mpMinLonF = min_lon
+       res@mpMaxLonF = max_lon
+    end if
+ end if
 
+ 
+ res@gsnCenterString = "Model Data Regions - All"
+ if(projection .eq. 2) then    
+    plot = gsn_csm_contour_map_polar(wks, flag1, res)
+ else
+    plot = gsn_csm_contour_map(wks, flag1, res)
+ end if
  do ar = startRegion, nreg-1
 ;----------------------------------------------
 ; Open file for plots 
@@ -1410,7 +1455,11 @@ end if        ;  end of plot_check loop
    flag1 = -0.1
    flag1 ({box_s(ar):box_n(ar)},{box_w(ar):box_e(ar)}) = 0.1*fland1 ({box_s(ar):box_n(ar)},{box_w(ar):box_e(ar)}) - 1.e-36
    res@gsnCenterString = "Model Data Regions - " + ptitstr(ar) + boxstr(ar)
-   plot = gsn_csm_contour_map(wks, flag1, res)
+   if(projection .eq. 2) then
+      plot = gsn_csm_contour_map_polar(wks, flag1, res)
+   else
+     plot = gsn_csm_contour_map(wks, flag1, res)
+   end if
  end do
 
  print ("=========================================")

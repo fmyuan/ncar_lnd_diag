@@ -25,7 +25,6 @@ begin
   cn       = getenv("CN")
   colormap = getenv("colormap")
   projection=getenv("projection")
-  cn       = getenv("CN")
 
   fland_mask = stringtofloat(land_mask)
 
@@ -65,9 +64,9 @@ begin
   zoom  = stringtointeger(getenv("reg_contour")); # (1 = SUB, 0 = GLOBAL)
   if (zoom.eq.1)then
      min_lat = stringtofloat(getenv("min_lat"))
-     max_lat = stringtofloat(getenv("min_lat"))
+     max_lat = stringtofloat(getenv("max_lat"))
      min_lon = stringtofloat(getenv("min_lon"))
-     max_lon = stringtofloat(getenv("min_lon"))
+     max_lon = stringtofloat(getenv("max_lon"))
   end if
   seasons  = (/"DJF","JJA","MAM","SON","ANN"/)
 ;*************************************************
@@ -550,10 +549,23 @@ begin
                  res@lbLabelFontHeightF   = 0.014
                  res@gsnStringFontHeightF = 0.014
                  res@tiMainFontHeightF    = 0.018
-     
+
+                 if (zoom.eq.1) then
+                    res@mpMinLatF = min_lat
+                    res@mpMaxLatF = max_lat
+                    if (projection .ne. 2) then
+                      res@mpMinLonF = min_lon
+                      res@mpMaxLonF = max_lon
+                    end if
+                 end if
+                      
 ;                  case 1 plot
-                 plot = gsn_csm_contour_map(wks,var_avg_1,res)
-         
+                 if (projection .eq. 2) then
+                    plot = gsn_csm_contour_map_polar(wks,var_avg_1,res)
+                 else
+                    plot = gsn_csm_contour_map(wks,var_avg_1,res)
+                 end if
+                 
                  pres@txFontHeightF = res@tiMainFontHeightF + .003
                  gsn_panel(wks,plot,(/1,1/),pres)           ; draw panel plot
 
@@ -617,7 +629,20 @@ begin
                  delete(min1)
                  delete(max1)
 
-                 plot(0) = gsn_csm_contour_map(wks,var_avg_1,res)
+                 if (zoom.eq.1) then
+                    res@mpMinLatF = min_lat
+                    res@mpMaxLatF = max_lat
+                    if (projection .ne. 2) then
+                      res@mpMinLonF = min_lon
+                      res@mpMaxLonF = max_lon
+                    end if
+                 end if
+
+                 if (projection .eq. 2) then
+                    plot(0) = gsn_csm_contour_map_polar(wks,var_avg_1,res)
+                 else
+                    plot(0) = gsn_csm_contour_map(wks,var_avg_1,res)
+                 end if
 ;                  save settings to plot obs
  
 ;                  panel 2 plot: case 2 plot
@@ -642,7 +667,21 @@ begin
                  delete(min1)
                  delete(max1)
                  
-                 plot(1) = gsn_csm_contour_map(wks,var_avg_2,res)
+                 if (zoom.eq.1) then
+                    res@mpMinLatF = min_lat
+                    res@mpMaxLatF = max_lat
+                    if (projection .ne. 2) then
+                      res@mpMinLonF = min_lon
+                      res@mpMaxLonF = max_lon
+                    end if
+                 end if
+
+                 if (projection .eq. 2) then
+                    plot(1) = gsn_csm_contour_map_polar(wks,var_avg_2,res)
+                 else
+                    plot(1) = gsn_csm_contour_map(wks,var_avg_2,res)
+                 end if
+                 
                  delete(res)
 
 ;                  panel 3 difference plot
@@ -719,9 +758,22 @@ begin
                     delete(useMax1)
                  end if
 
+                 if (zoom.eq.1) then
+                    res@mpMinLatF = min_lat
+                    res@mpMaxLatF = max_lat
+                    if (projection .ne. 2) then
+                      res@mpMinLonF = min_lon
+                      res@mpMaxLonF = max_lon
+                    end if
+                 end if
+
                  res@tiMainString           = cases(0) +" - "+cases(1)
                  res@tiMainOffsetYF = -.01
-                 plot(2) = gsn_csm_contour_map(wks,diff,res)
+                 if (projection .eq. 2) then
+                    plot(2) = gsn_csm_contour_map_polar(wks,diff,res)
+                 else
+                    plot(2) = gsn_csm_contour_map(wks,diff,res)
+                 end if
                  delete(res)
                  
 ;                  panel plot
@@ -852,10 +904,22 @@ begin
                  res@lbLabelFontHeightF   = 0.014
                  res@gsnStringFontHeightF = 0.014
                  res@tiMainFontHeightF    = 0.018
+
+                 if (zoom.eq.1) then
+                    res@mpMinLatF = min_lat
+                    res@mpMaxLatF = max_lat
+                    if (projection .ne. 2) then
+                      res@mpMinLonF = min_lon
+                      res@mpMaxLonF = max_lon
+                    end if
+                 end if
            
 ;                  4D case 1 plot
-                 plot(0) = gsn_csm_contour_map(wks,var_avg_1(k,:,:),res)
-
+                 if (projection .eq. 2) then
+                    plot(0) = gsn_csm_contour_map_polar(wks,var_avg_1(k,:,:),res)
+                 else
+                    plot(0) = gsn_csm_contour_map(wks,var_avg_1(k,:,:),res)
+                 end if
 ;                  panel plot
                  gsn_panel(wks,plot,(/1,1/),pres)           ; draw panel plot
 

@@ -253,7 +253,7 @@ setenv setRestart_set   2   # (Valid sets:  2,3,4,5,6,7,8,9)
 # the diagnostics package is running smooothly with their data.  Then turn the rmMonFiles* flags to on (0)
 # to save file space.
 #**************************************************
- setenv projection       0      # (1=Cylindrical Equidistant, 0=Robinson)
+ setenv projection       2      # (1=Cylindrical Equidistant, 0=Robinson, 2=PolarAzimuthalEquiDistant)
  setenv colormap         1      # (1=use Blue-Yellow-Red Colormap, 0=use original colormaps)
  setenv density        288      # controls density of output .gif images, example values = 72,96,144,216,288 (higher values = higher quality)
  setenv rmMonFilesTrend  0      # (1=ON,0=OFF)  rm monthly MSS files after trend files are created   (default = 0)
