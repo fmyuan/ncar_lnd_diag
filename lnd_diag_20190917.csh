@@ -237,9 +237,9 @@ setenv set_4      0   # (1=ON,0=OFF)  VERTICAL PROFILES					(default=0)
 setenv set_5      1   # (1=ON,0=OFF)  ANNUAL MEANS OF REGIONAL HYDROLOGIC		(default=1)
                       # CYCLE AND GLOBAL QUANTITIES
 setenv set_6      1   # (1=ON,0=OFF)  ANNUAL TRENDS FOR REGIONS				(default=1)
-setenv set_7      0   # (1=ON,0=OFF)  RIVER FLOW AND DISCHARGE			 	(default=1)
+setenv set_7      0   # (1=ON,0=OFF)  RIVER FLOW AND DISCHARGE			 	(default=0)
 setenv set_8      0   # (1=ON,0=OFF)  OCN-ATMOS TRACERS					(default=0)
-setenv set_8_lnd  1   # (1=ON,0=OFF)  LND-ATMOS TRACERS					(default=0)
+setenv set_8_lnd  1   # (1=ON,0=OFF)  LND-ATMOS TRACERS					(default=1)
 setenv set_9      0   # (1=ON,0=OFF)  VALIDATION DIAGNOSTICS (ONLY FOR MODEL-MODEL)	(default=1)
 
 #**************************************************
@@ -253,7 +253,7 @@ setenv setRestart_set   2   # (Valid sets:  2,3,4,5,6,7,8,9)
 # the diagnostics package is running smooothly with their data.  Then turn the rmMonFiles* flags to on (0)
 # to save file space.
 #**************************************************
- setenv projection       2      # (1=Cylindrical Equidistant, 0=Robinson, 2=PolarAzimuthalEquiDistant)
+ setenv projection       2      # (1=Cylindrical Equidistant, 0=Robinson, 2=Polar Lambert EqualArea)
  setenv colormap         1      # (1=use Blue-Yellow-Red Colormap, 0=use original colormaps)
  setenv density        288      # controls density of output .gif images, example values = 72,96,144,216,288 (higher values = higher quality)
  setenv rmMonFilesTrend  0      # (1=ON,0=OFF)  rm monthly MSS files after trend files are created   (default = 0)
@@ -367,11 +367,11 @@ setenv sig_lvl            0.10     # level of significance
 #**************************************************
 # 23:  set 2: subregion desired? (Note: DEPRECATED)
 #**************************************************
-setenv reg_contour   1     # (0 = SUBREGION, 1 = GLOBAL)
-setenv min_lat       30.   # southern boundary in degrees north
-setenv max_lat       80.   # northern boundary in degrees north
-setenv min_lon       -130. # western boundary in degrees east
-setenv max_lon       -50.  # eastern boundary in degrees east
+setenv reg_contour   1     # (1 = SUBREGION, 0 = GLOBAL)
+setenv min_lat       55.   # southern boundary in degrees north
+setenv max_lat       90.   # northern boundary in degrees north
+setenv min_lon       -180. # western boundary in degrees east
+setenv max_lon       180.  # eastern boundary in degrees east
 setenv OBS_RES       T42   # observation resolution
 
 #**************************************************
