@@ -611,6 +611,8 @@ end do   ; end plot loop
 ;----------------------------------------------
  delete(res)
  res = True
+ res@gsnDraw = False
+ res@gsnFrame= False
  
   if(projection .eq. 2) then
     res@mpProjection = "LambertEqualArea"
@@ -695,6 +697,14 @@ end do   ; end plot loop
        res@mpMinLonF = min_lon
        res@mpMaxLonF = max_lon
     end if
+ 
+     ; for adding region center marker
+    pmres = True
+    pmres@gsMarkerColor = "red"
+    pmres@gsMarkerSizeF = 0.02
+    pmres@gsMarkerIndex = 12
+    pmres@gsLineThicknessF = 3.
+    
  end if
 
  res@gsnCenterString = "Model Data Regions - All"
@@ -703,6 +713,9 @@ end do   ; end plot loop
  else
     plot = gsn_csm_contour_map(wks, flag1, res)
  end if
+ draw(plot)
+ frame(wks)
+ 
  do ar = startRegion, nreg-1
 ;----------------------------------------------
 ; Open file for plots
@@ -713,12 +726,22 @@ end do   ; end plot loop
    gsn_define_colormap(wks, cmap )
    flag1 = -0.1
    flag1 ({box_s(ar):box_n(ar)},{box_w(ar):box_e(ar)}) = 0.1*fland1 ({box_s(ar):box_n(ar)},{box_w(ar):box_e(ar)}) - 1.e-36
+   reg_x = (box_w(ar)+box_e(ar))/2.0
+   reg_y = (box_s(ar)+box_n(ar))/2.0
+
    res@gsnCenterString = "Model Data Regions - " + ptitstr(ar) + boxstr(ar)
    if(projection .eq. 2) then
      plot = gsn_csm_contour_map_polar(wks, flag1, res)
    else
      plot = gsn_csm_contour_map(wks, flag1, res)
    end if
+
+   if (zoom.eq.1) then
+     reg_marker = gsn_add_polymarker(wks, plot, reg_x, reg_y, pmres)
+   end if
+   draw(plot)
+   frame(wks)
+
  end do
 
  print ("=========================================")
