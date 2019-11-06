@@ -538,15 +538,30 @@ sub set2Page
 
 sub set3and6Page
 {
-	%ngee = ( 'NGEE_AK-BEO',     'NGEE_AK-BEO', 	# NGEE Arctic intensive study sites
-		    'NGEE_AK-Kougarok',  'NGEE_AK-Kougarok',
-		    'NGEE_AK-Council',   'NGEE_AK-Council',
-		    'NGEE_AK-Teller',    'NGEE AK-Teller',);
 
-	%arctic = ( 'Alaskan_Arctic',   'Alaskan Arctic', 	# arctic only
-		    'Canadian_Arctic',  'Canadian Arctic',
-		    'Greenland',        'Greenland',
-		    'Russian_Arctic',   'Russian Arctic',);
+	# NGEE Arctic intensive study sites
+	%ngee = ( '1NGEE_AK-BEO',     'NGEE AK-BEO',
+		    '2NGEE_AK-Kougarok',  'NGEE AK-Kougarok',
+		    '3NGEE_AK-Council',   'NGEE AK-Council',
+		    '4NGEE_AK-Teller',    'NGEE AK-Teller',);
+ 	# arctic only
+	%arctic = ( '1West_Alaskan_Arctic',         'West Alaskan Arctic',
+                '2North_Alaskan_Arctic',        'North Alaskan Arctic',
+                '3Northwest_Canadian_Arctic',   'Northwest Canadian Arctic',
+                '4Northcentral_Canadian_Arctic','Northcentral Canadian Arctic',
+                '5Northeast_Canadian_Arctic',   'Northeast Canadian Arctic',
+                '6Greenland_Iceland',           'Greenland-Iceland',
+                '7Northwest_Russian_Arctic',    'Northwest Russian Arctic',
+                '8Northeast1_Russian_Arctic',   'Northeast1 Russian Arctic',    # in east longitude (cannot over 180E)
+                '9Northeast2_Russian_Arctic',   'Northeast2 Russian Arctic',);  # in west longitude
+
+	%boreal_north = ( '1Interior_Alaska',       'Interior Alaska',
+               '2Northwest1_Canada',            'Northwest1 Canada', 
+               '3Northwest2_Canada',            'Northwest2 Canada', 
+               '4Northern_Europe',              'Northern Europe',
+               '5Western_Siberia',              'Western Siberia',
+               '6Eastern_Siberia',              'Eastern Siberia',
+               '7Far-eastern_Russia',           'Far-eastern Russia',);
 
 	%polar = ( 'Alaskan_Arctic',   'Alaskan Arctic', 	# polar
 		    'Canadian_Arctic',  'Canadian Arctic',
@@ -631,7 +646,7 @@ sub set3and6Page
          }
 #	@regions = ("HEMISPHERIC AND GLOBAL","POLAR","BOREAL","MIDDLE LATITUDES","TROPICAL RAINFOREST","TROPICAL SAVANNA",
 #			   "ARID","HIGHLAND","ASIA");
-	@regions = ("NGEE", "ARCTIC", "BOREAL");
+	@regions = ("NGEE", "ARCTIC", "BOREAL_NORTH");
 #	@paleo_regions = ("HEMISPHERIC AND GLOBAL");
 
 	# print set-specific header information
@@ -715,6 +730,7 @@ sub set3and6Page
 	    undef $nList;
 	    if ($region eq "NGEE")                   { %nList = %ngee;     }
 	    if ($region eq "ARCTIC")                 { %nList = %arctic;   }
+	    if ($region eq "BOREAL_NORTH")           { %nList = %boreal_north;}
 	    if ($region eq "POLAR")                  { %nList = %polar;    }
 	    if ($region eq "BOREAL")                 { %nList = %boreal;   }
 	    if ($region eq "MIDDLE LATITUDES")       { %nList = %midLat;   }

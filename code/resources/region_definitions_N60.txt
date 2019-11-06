@@ -1,9 +1,9 @@
 netcdf region_definitions_N60 {
 dimensions:
-	region = 15 ;
-	ncl3 = 20 ;
-	ncl1 = 18 ;
-	ncl2 = 20 ;
+	region = 20 ;
+	ncl3 = 40 ;
+	ncl1 = 40 ;
+	ncl2 = 40 ;
 variables:
 	char BOXSTR(region, ncl3) ;
 		BOXSTR:long_name = "Region Lat/Lon Title" ;
@@ -25,7 +25,7 @@ variables:
 		:srcCode = "mkNewRegions.ncl" ;
 		:creator = "Nan Rosenbloom (nanr@ucar.edu)" ;
 		:create_date = "Fri Jun  5 17:47:01 MDT 2009" ;
-		:history = " Wed Spe 18 11:54:33 2019: remove Antartica, BOX_S limited to 60oN, by F.-M. Yuan@ornl-ccsi \n",
+		:history = " Wed Spe 18 11:54:33 2019: remove Antartica, BOX_S limited to 60oN, and re-do regioning for NGEE-ARCTIC project, by F.-M. Yuan@ornl-ccsi \n",
 			"Wed Sep 18 11:50:34 2019: ncks --dmn region,0,11 region_definitions_default.nc -o region_definitions_N60.nc\n",
 			"Wed Aug 12 20:08:48 2009: ncatted -a _FillValue,,d,, region_definitions.nc" ;
 		:NCO = "netCDF Operators version 4.8.0 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)" ;
@@ -35,60 +35,86 @@ data:
   "(71.25N,156.75W)",
   "(65.25N,164.75W)",
   "(64.75N,163.75W)",
-  "(64.75N,166.75W)",
-  "(66.5-72N,170-140W)",
-  "(66.5-90N,120-60W)",
-  "(60-90N,60-20W)",
-  "(66.5-90N,70-170E)",
-  "(60-66.5N,170-140W)",
-  "(60-66.5N,125-100W)",
-  "(60-66.5N,100-80W)",
-  "(60-66.5N,80-55W)",
-  "(60-70N,5-45E)",
-  "(60-66.5N,60-90E)",
-  "(60-66.5N,90-140E)";
+  "(64.75N,165.75W)",
 
- BOX_E = -166.5, -163.5, -164.5, -156.5, -140, -60, -20, 170, -140, -100, -80, -55, 45, 90, 140 ;
+  "(60-67.0N,169.0W-160.0W)",
+  "(67.0-72.0N,167.0W-141.0W)",
+  "(64.5-80.0N,141.0W-110.0W)",
+  "(60-83.0N,110.0W-80.0W)",
+  "(60-83.0N,80.0W-64.0W)",
+  "(60-84.0N,64.0W-10.0W)",
+  "(64.0-81.0N,60.0E-130.0E)",
+  "(65.0-82.0N,130.0E-180.0E)",
+  "(65.0-70.0N,180.0W-170.0W)",
 
- BOX_W = -167.0, -164.0, -165.0, -157.0, -170, -120, -60, 70, -170, -125, -100, -80, 5, 60, 90 ;
+  "(60-67.0N,160.0W-141.0W)",
+  "(60-65.0N,141.0W-123.0W)",
+  "(60-62.0N,123.0W-110.0W)",
+  "(60-72.0N,5.0E-60.0E)",
+  "(60-64.0N,60.0E-90.0E)",
+  "(60-64.0N,90.0E-140.0E)",
+  "(60-64.0N,140.0E-180.0E)" ;
 
- BOX_N = 65.0, 65.0, 65.5, 71.5, 72, 90, 90, 90, 66.5, 66.5, 66.5, 66.5, 70, 66.5, 66.5 ;
+ BOX_E = -156.5, -164.5, -163.5, -165.5,  
+    -160.0, -141.0,   -110.0, -80.0, -64.0,    -10.0,  110.0, 180.0, -170.0, 
+    -141.0,    -123.0, -110.0,   60.0, 90.0, 140.0, 180.0 ;
 
- BOX_S = 64.5, 64.5, 65.0, 71.0, 66.5, 66.5, 60, 66.5, 60, 60, 60, 60, 60, 60, 60 ;
+ BOX_W = -157.0, -165.0, -164.0, -166.0,   
+    -169.0, -167.0,    -141.0, -110.0, -80.0,    -64.0,   60.0, 110.0, -180.0,
+    -160.0,    -141.0, -123.0,    5.0, 60.0, 90.0, 140.0 ;
+
+ BOX_N = 71.5, 65.5, 65.0, 65.0,   
+    67.0, 72.0,       80.0, 83.0, 83.0,        84.0,   81.0, 82.0, 70.0,
+    67.0,       65.0, 62.0,      72.0, 64.0, 64.0, 64.0 ;
+
+ BOX_S = 71.0, 65.0, 64.5, 64.5,   
+    60.0, 67.0,       62.0, 60.0, 60.0,        60.0,   64.0, 64.0, 64.0,
+    60.0,    60.0, 60.0,         60.0, 60.0, 60.0, 60.0 ;
+
 
  PS_ID =
-  "NGEE_AK-BEO",
-  "NGEE_AK-Kougarok",
-  "NGEE_AK-Council",
-  "NGEE_AK-Teller",
-  "Alaskan_Arctic",
-  "Canadian_Arctic",
-  "Greenland",
-  "Russian_Arctic",
-  "Alaska",
-  "Northwest_Canada",
-  "Central_Canada",
-  "Eastern_Canada",
-  "Northern_Europe",
-  "Western_Siberia",
-  "Eastern_Siberia";
+  "1NGEE_AK-BEO",
+  "2NGEE_AK-Kougarok",
+  "3NGEE_AK-Council",
+  "4NGEE_AK-Teller",
+  "1West_Alaskan_Arctic",
+  "2North_Alaskan_Arctic",
+  "3Northwest_Canadian_Arctic",
+  "4Northcentral_Canadian_Arctic",
+  "5Northeast_Canadian_Arctic",
+  "6Greenland_Iceland",
+  "7Northwest_Russian_Arctic",
+  "8Northeast1_Russian_Arctic",
+  "9Northeast2_Russian_Arctic",
+  "1Interior_Alaska",
+  "2Northwest1_Canada",
+  "3Northwest2_Canada",
+  "4Northern_Europe",
+  "5Western_Siberia",
+  "6Eastern_Siberia", 
+  "7Far-eastern_Russia" ;
 
  PTITSTR =
   "NGEE AK-BEO",
   "NGEE AK-Kougarok",
   "NGEE AK-Council",
   "NGEE AK-Teller",
-  "Alaskan Arctic ",
-  "Canadian Arctic ",
-  "Greenland ",
-  "Russian Arctic ",
-  "Alaska ",
-  "Northwest Canada ",
-  "Central Canada ",
-  "Eastern Canada ",
-  "Northern Europe ",
-  "Western Siberia ",
-  "Eastern Siberia ";
+  "West Alaskan_Arctic",
+  "North Alaskan Arctic",
+  "Northwest Canadian Arctic",
+  "NorthCentral Canadian Arctic",
+  "Northeast Canadian Arctic",
+  "Greenland Iceland",
+  "Northwest Russian Arctic",
+  "Northeast1 Russian Arctic",
+  "Northeast2 Russian Arctic",
+  "Interior Alaska",
+  "Northwest1 Canada",
+  "Northwest2 Canada",
+  "Northern Europe",
+  "Western Siberia",
+  "Eastern Siberia",
+  "Far-Eastern Russia" ;
 
- region = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ;
+ region = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ;
 }
